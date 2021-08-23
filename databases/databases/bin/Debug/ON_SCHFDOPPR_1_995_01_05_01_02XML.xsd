@@ -1,0 +1,1037 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:complexType name="СвИПТип">
+    <xs:sequence>
+      <xs:element ref="ФИО" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:attribute name="ИННФЛ" type="ИННФЛТип" use="required" />
+    <xs:attribute name="СвГосРегИП">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="100" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="ИныеСвед">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="255" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:simpleType name="ИННФЛТип">
+    <xs:restriction base="xs:string">
+      <xs:length value="12" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ИННЮЛТип">
+    <xs:restriction base="xs:string">
+      <xs:length value="10" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="КППТип">
+    <xs:restriction base="xs:string">
+      <xs:length value="9" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ИдСв">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="СвИП" type="СвИПТип" minOccurs="0" maxOccurs="unbounded" />
+        <xs:element name="СвЮЛУч" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:attribute name="НаимОрг" use="required">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="1000" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="ИННЮЛ" type="ИННЮЛТип" use="required" />
+            <xs:attribute name="КПП" type="КППТип" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="СвЮлНеУч" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:attribute name="НаимОрг" use="required">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="1000" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="ИныеСвед">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="255" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="СвИнНеУч" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:attribute name="НаимОрг" use="required">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="1000" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="ИныеСвед">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="255" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ФИОТип">
+    <xs:attribute name="Фамилия" use="required">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="60" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="Имя" use="required">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="60" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="Отчество">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="60" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:element name="ФИО" type="ФИОТип" />
+  <xs:complexType name="АдресТип">
+    <xs:sequence>
+      <xs:element name="КодГАР" type="string-36" />
+      <xs:element name="АдрРФ" type="АдрРФТип" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="АдрИнф" type="АдрИнфТип" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="string-36">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="36" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="АдрРФТип">
+    <xs:attribute name="Индекс">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:length value="6" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="КодРегион" use="required">
+      <xs:simpleType>
+        <xs:restriction base="CCРФТип" />
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="Район">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="50" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="Город">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="50" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="НаселПункт">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="50" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="Улица">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="50" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="Дом">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="20" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="Корпус">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="20" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="Кварт">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="20" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:simpleType name="CCРФТип">
+    <xs:restriction base="xs:string">
+      <xs:length value="2" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="АдрИнфТип">
+    <xs:attribute name="КодСтр" type="ОКСМТип" use="required" />
+    <xs:attribute name="АдрТекст" use="required">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="255" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:simpleType name="ОКСМТип">
+    <xs:restriction base="xs:string">
+      <xs:length value="3" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="Адрес" type="АдресТип" />
+  <xs:complexType name="КонтактТип">
+    <xs:attribute name="Тлф">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="255" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="ЭлПочта">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="255" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:element name="Контакт" type="КонтактТип" />
+  <xs:simpleType name="БИКТип">
+    <xs:restriction base="xs:string">
+      <xs:length value="9" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="БанкРекв">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="СвБанк" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:attribute name="НаимБанк">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="1000" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="БИК" type="БИКТип" />
+            <xs:attribute name="КорСчет">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="20" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="НомерСчета">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="20" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ТекстИнфТип">
+    <xs:attribute name="Идентиф" use="required">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="50" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="Значен" use="required">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="2000" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:element name="ТекстИнф" type="ТекстИнфТип" />
+  <xs:simpleType name="КНДТип">
+    <xs:restriction base="xs:string">
+      <xs:length value="7" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ДатаТип">
+    <xs:restriction base="xs:string">
+      <xs:length value="10" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ВремяТип">
+    <xs:restriction base="xs:string">
+      <xs:length value="8" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ОКВТип">
+    <xs:restriction base="xs:string">
+      <xs:length value="3" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="УчастникТип">
+    <xs:sequence>
+      <xs:element ref="ИдСв" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element ref="Адрес" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element ref="Контакт" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element ref="БанкРекв" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:attribute name="ОКПО">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="10" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="СтруктПодр">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="1000" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="ИнфДляУчаст">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="255" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:simpleType name="ОКЕИТип">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="4" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="СумАкцизТип">
+    <xs:sequence>
+      <xs:element name="СумАкциз">
+        <xs:simpleType>
+          <xs:restriction base="xs:decimal" />
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="БезАкциз">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:length value="10" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="СумНДСТип">
+    <xs:sequence>
+      <xs:element name="СумНал">
+        <xs:simpleType>
+          <xs:restriction base="xs:decimal" />
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="БезНДС">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="18" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Файл">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="СвУчДокОбор" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="СвОЭДОтпр" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:attribute name="НаимОрг" use="required">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="1000" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="ИННЮЛ" type="ИННЮЛТип" use="required" />
+                  <xs:attribute name="ИдЭДО" use="required">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:length value="3" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="ИдОтпр" use="required">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="46" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="ИдПол" use="required">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="46" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Документ" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="СвСчФакт" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="ИспрСчФ" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:attribute name="НомИспрСчФ" use="required">
+                          <xs:simpleType>
+                            <xs:restriction base="xs:integer" />
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="ДатаИспрСчФ" type="ДатаТип" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="СвПрод" type="УчастникТип" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element name="ГрузОт" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="ОнЖе">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:length value="5" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="ГрузОтпр" type="УчастникТип" minOccurs="0" maxOccurs="unbounded" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="ГрузПолуч" type="УчастникТип" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element name="СвПРД" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:attribute name="НомерПРД" use="required">
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="30" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="ДатаПРД" type="ДатаТип" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="СвПокуп" type="УчастникТип" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element name="ДопСвФХЖ1" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:attribute name="ИдГосКон">
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="255" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="НаимОКВ">
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="100" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="КурсВал">
+                          <xs:simpleType>
+                            <xs:restriction base="xs:decimal" />
+                          </xs:simpleType>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="ИнфПолФХЖ1" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element ref="ТекстИнф" minOccurs="0" maxOccurs="unbounded" />
+                        </xs:sequence>
+                        <xs:attribute name="ИдФайлИнфПол">
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="36" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="НомерСчФ" use="required">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="1000" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="ДатаСчФ" type="ДатаТип" use="required" />
+                  <xs:attribute name="КодОКВ" type="ОКВТип" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="ТаблСчФакт" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="СведТов" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Акциз" type="СумАкцизТип" minOccurs="0" maxOccurs="unbounded" />
+                          <xs:element name="СумНал" type="СумНДСТип" minOccurs="0" maxOccurs="unbounded" />
+                          <xs:element name="СвТД" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:attribute name="КодПроисх" type="ОКСМТип" use="required" />
+                              <xs:attribute name="НомерТД" use="required">
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:string">
+                                    <xs:maxLength value="29" />
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:attribute>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="ИнфПолФХЖ2" type="ТекстИнфТип" minOccurs="0" maxOccurs="unbounded" />
+                          <xs:element name="ДопСведТов" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:attribute name="ПрТовРаб">
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:string">
+                                    <xs:length value="1" />
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="ДопПризн">
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:string">
+                                    <xs:maxLength value="4" />
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="КодТов">
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:string">
+                                    <xs:maxLength value="255" />
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="НаимЕдИзм">
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:string">
+                                    <xs:maxLength value="255" />
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="КрНаимСтрПр">
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:string">
+                                    <xs:maxLength value="255" />
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="НадлОтп">
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:decimal" />
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="КорСчДебет">
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:string">
+                                    <xs:length value="9" />
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="КорСчКредит">
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:string">
+                                    <xs:length value="9" />
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:attribute>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="НомСтр" use="required">
+                          <xs:simpleType>
+                            <xs:restriction base="xs:integer" />
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="НаимТов" use="required">
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="1000" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="ОКЕИ_Тов" type="ОКЕИТип" />
+                        <xs:attribute name="КолТов">
+                          <xs:simpleType>
+                            <xs:restriction base="xs:decimal" />
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="ЦенаТов">
+                          <xs:simpleType>
+                            <xs:restriction base="xs:decimal" />
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="СтТовБезНДС">
+                          <xs:simpleType>
+                            <xs:restriction base="xs:decimal" />
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="НалСт" use="required">
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="7" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="СтТовУчНал" use="required">
+                          <xs:simpleType>
+                            <xs:restriction base="xs:decimal" />
+                          </xs:simpleType>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="ВсегоОпл" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="НеттоВс" minOccurs="0" msdata:Ordinal="2">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:decimal" />
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="СумНалВсего" type="СумНДСТип" minOccurs="0" maxOccurs="unbounded" />
+                        </xs:sequence>
+                        <xs:attribute name="СтТовБезНДСВсего">
+                          <xs:simpleType>
+                            <xs:restriction base="xs:decimal" />
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="СтТовУчНалВсего" use="required">
+                          <xs:simpleType>
+                            <xs:restriction base="xs:decimal" />
+                          </xs:simpleType>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="СвПродПер" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="СвПер" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="ОснПер" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:attribute name="НаимОсн" use="required">
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:string">
+                                    <xs:maxLength value="255" />
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="НомОсн">
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:string">
+                                    <xs:maxLength value="255" />
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="ДатаОсн" type="ДатаТип" />
+                              <xs:attribute name="ДопСвОсн">
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:string">
+                                    <xs:maxLength value="1000" />
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:attribute>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="СвЛицПер" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="РабОргПрод" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element ref="ФИО" minOccurs="0" maxOccurs="unbounded" />
+                                    </xs:sequence>
+                                    <xs:attribute name="Должность" use="required">
+                                      <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                          <xs:maxLength value="128" />
+                                        </xs:restriction>
+                                      </xs:simpleType>
+                                    </xs:attribute>
+                                    <xs:attribute name="ИныеСвед">
+                                      <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                          <xs:maxLength value="255" />
+                                        </xs:restriction>
+                                      </xs:simpleType>
+                                    </xs:attribute>
+                                    <xs:attribute name="ОснПолн">
+                                      <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                          <xs:maxLength value="120" />
+                                        </xs:restriction>
+                                      </xs:simpleType>
+                                    </xs:attribute>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="ИнЛицо" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="ПредОргПер" minOccurs="0" maxOccurs="unbounded">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element ref="ФИО" minOccurs="0" maxOccurs="unbounded" />
+                                          </xs:sequence>
+                                          <xs:attribute name="Должность" use="required">
+                                            <xs:simpleType>
+                                              <xs:restriction base="xs:string">
+                                                <xs:maxLength value="128" />
+                                              </xs:restriction>
+                                            </xs:simpleType>
+                                          </xs:attribute>
+                                          <xs:attribute name="ИныеСвед">
+                                            <xs:simpleType>
+                                              <xs:restriction base="xs:string">
+                                                <xs:maxLength value="255" />
+                                              </xs:restriction>
+                                            </xs:simpleType>
+                                          </xs:attribute>
+                                          <xs:attribute name="НаимОргПер" use="required">
+                                            <xs:simpleType>
+                                              <xs:restriction base="xs:string">
+                                                <xs:maxLength value="128" />
+                                              </xs:restriction>
+                                            </xs:simpleType>
+                                          </xs:attribute>
+                                          <xs:attribute name="ОснДоверОргПер">
+                                            <xs:simpleType>
+                                              <xs:restriction base="xs:string">
+                                                <xs:maxLength value="120" />
+                                              </xs:restriction>
+                                            </xs:simpleType>
+                                          </xs:attribute>
+                                          <xs:attribute name="ОснПолнПредПер">
+                                            <xs:simpleType>
+                                              <xs:restriction base="xs:string">
+                                                <xs:maxLength value="120" />
+                                              </xs:restriction>
+                                            </xs:simpleType>
+                                          </xs:attribute>
+                                        </xs:complexType>
+                                      </xs:element>
+                                      <xs:element name="ФЛПер" minOccurs="0" maxOccurs="unbounded">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element ref="ФИО" minOccurs="0" maxOccurs="unbounded" />
+                                          </xs:sequence>
+                                          <xs:attribute name="ИныеСвед">
+                                            <xs:simpleType>
+                                              <xs:restriction base="xs:string">
+                                                <xs:maxLength value="255" />
+                                              </xs:restriction>
+                                            </xs:simpleType>
+                                          </xs:attribute>
+                                          <xs:attribute name="ОснДоверФЛ">
+                                            <xs:simpleType>
+                                              <xs:restriction base="xs:string">
+                                                <xs:maxLength value="120" />
+                                              </xs:restriction>
+                                            </xs:simpleType>
+                                          </xs:attribute>
+                                        </xs:complexType>
+                                      </xs:element>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="ТранГруз" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="ТранНакл" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:attribute name="НомТранНакл" use="required">
+                                      <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                          <xs:maxLength value="255" />
+                                        </xs:restriction>
+                                      </xs:simpleType>
+                                    </xs:attribute>
+                                    <xs:attribute name="ДатаТранНакл" type="ДатаТип" use="required" />
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="Перевозчик" type="УчастникТип" minOccurs="0" maxOccurs="unbounded" />
+                              </xs:sequence>
+                              <xs:attribute name="СвТранГруз">
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:string">
+                                    <xs:maxLength value="1000" />
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:attribute>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="СвПерВещи" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:attribute name="ДатаПерВещ" type="ДатаТип" />
+                              <xs:attribute name="СвПерВещ">
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:string">
+                                    <xs:maxLength value="1000" />
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:attribute>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="СодОпер" use="required">
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="255" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="ВидОпер">
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="255" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="ДатаПер" type="ДатаТип" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="ИнфПолФХЖ3" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element ref="ТекстИнф" minOccurs="0" maxOccurs="unbounded" />
+                        </xs:sequence>
+                        <xs:attribute name="ИдФайлИнфПол">
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="36" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Подписант" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="ФЛ" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element ref="ФИО" minOccurs="0" maxOccurs="unbounded" />
+                        </xs:sequence>
+                        <xs:attribute name="ГосРегИПВыдДов">
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="100" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="ИННФЛ" type="ИННФЛТип" />
+                        <xs:attribute name="ИныеСвед">
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="255" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="ИП" type="СвИПТип" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element name="ЮЛ" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element ref="ФИО" minOccurs="0" maxOccurs="unbounded" />
+                        </xs:sequence>
+                        <xs:attribute name="ГосРегИПВыдДов">
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="100" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="ИННЮЛ" type="ИННЮЛТип" use="required" />
+                        <xs:attribute name="НаимОрг">
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="1000" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Должн" use="required">
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="128" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="ИныеСвед">
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="255" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="ОблПолн" use="required">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:length value="1" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Статус" use="required">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:length value="1" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="ОснПолн" use="required">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="ОснПолнОрг">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="КНД" use="required">
+              <xs:simpleType>
+                <xs:restriction base="КНДТип" />
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="Функция" use="required">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="6" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="ПоФактХЖ">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="255" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="НаимДокОпр">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="255" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="ДатаИнфПр" type="ДатаТип" use="required" />
+            <xs:attribute name="ВремИнфПр" type="ВремяТип" use="required" />
+            <xs:attribute name="НаимЭконСубСост" use="required">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="1000" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="ОснДоверОргСост">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="120" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="ИдФайл" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="200" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="ВерсФорм" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="5" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="ВерсПрог">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="40" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="ИдСв" />
+        <xs:element ref="ФИО" />
+        <xs:element ref="Адрес" />
+        <xs:element ref="Контакт" />
+        <xs:element ref="БанкРекв" />
+        <xs:element ref="ТекстИнф" />
+        <xs:element ref="Файл" />
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
